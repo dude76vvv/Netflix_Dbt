@@ -1,0 +1,23 @@
+dbt_pipe1: #to match what is specified in dbt_project.yml
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: host.docker.internal #for docker
+      user: postgres
+      password: "123"
+      port: 5433 #non 5432 port used by docker postgres
+      dbname: netflix
+      schema: public
+      threads: 1
+
+    prod:
+      type: postgres
+      host: host.docker.internal #for docker
+      user: postgres
+      password: "123"
+      port: 5433 #non 5432 port used by docker postgres
+      dbname: netflix
+      schema: public
+      threads: 1
+#run command to point at current location instead of .dbt/ if required

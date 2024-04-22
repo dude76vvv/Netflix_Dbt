@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  source_postgres:
+    build:
+      context: ./dockers/pg1  # Directory containing the Dockerfile
+
+    ports:
+      - "5432:5432"
+
+    # expose:
+    #   - "5433" 
+    
+    # extra_hosts:
+    #   - "host.docker.internal:host-gateway"
+
+    environment:
+      POSTGRES_DB: netflix
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+    volumes:
+      - db-data:/var/lib/postgressql/data  #auto handle mapping the volume
+
+  # dbt:
+  #   image: ghcr.io/dbt-labs/dbt-postgres
+  #   command:
+  #     [
+  #       # "debug",
+  #       "run",
+  #       "--profiles-dir",
+  #       "/root/.dbt",
+  #       "--project-dir",
+  #       "/usr/app/dbt"
+  #     ]
+
+  #   volumes:
+  #     - ./dbt_pipe1:/usr/app/dbt
+  #     - ./profiles.yml:/root/.dbt/profiles.yml
+
+
+  #   environment:
+  #     DBT_PROFILE: default
+  #     DBT_TARGET: dev
+
+
+volumes:
+  db-data: {}
+

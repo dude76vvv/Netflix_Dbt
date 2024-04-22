@@ -1,0 +1,12 @@
+//test connection after setup profile
+//run when within dbt projectFolder
+dbt debug
+
+
+//create all models
+dbt run
+
+//create one model without extension
+dbt run --select <fileName>
+dbt run --select stg_netflixShows
+
